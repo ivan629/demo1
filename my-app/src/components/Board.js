@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Square  from './Square';
 class Board extends React.Component {
 
   renderSquare(i) {
@@ -30,6 +30,7 @@ class Board extends React.Component {
           {this.renderSquare(8)}
         </div>
       </div>
+   
     );
   }
 }

@@ -1,15 +1,20 @@
 import React from 'react';
 import calculateWinner from './calculateWinner';
+import {connect} from 'react-redux';
+import Board from './Board';
 
+
+function mapStateToProps (state) {
+  return  {
+    game: state.game
+  };
+}
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null)}],
-      stepNumber: 0,
-      xIsNext: true
-    };
+    let store  = this.props.game;
+    this.state = store;
+  
   }
   
   handleClick(i) {
@@ -30,10 +35,8 @@ class Game extends React.Component {
   }
   jumpTo(step) {
     this.setState({
-
       stepNumber: step,
       xIsNext: (step % 2) === 0,
-
     });
 
   }
@@ -78,4 +81,4 @@ class Game extends React.Component {
   }
 }
   
-export default Game;
+export default connect(mapStateToProps)(Game);
