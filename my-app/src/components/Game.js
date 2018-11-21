@@ -2,47 +2,44 @@ import React from 'react';
 import calculateWinner from './calculateWinner';
 import {connect} from 'react-redux';
 import Board from './Board';
+import {bindActionCreators} from 'redux';
+import  {squareClick, jumpTo} from '../actions/index';
 
 
-function mapStateToProps (state) {
-  return  {
-    game: state.game
-  };
-}
 class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    let store  = this.props.game;
-    this.state = store;
-  
-  }
-  
+
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+
+    const { history, stepNumber, xIsNext } = this.props;
+    const gameHistory = history.slice(0, stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
+
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
+    squares[i] = xIsNext ? 'X' : 'O';
+
+    this.props.squareClick({
+      history: gameHistory.concat([{
         squares: squares
       }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+      stepNumber: gameHistory.length,
+      xIsNext: !xIsNext });
   }
-  jumpTo(step) {
-    this.setState({
+
+  toHistory(step)
+  {
+    this.props.jumpTo({
       stepNumber: step,
       xIsNext: (step % 2) === 0,
     });
-
   }
+
   render() {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const { history, stepNumber, xIsNext } = this.props;
+
+    const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       const desc = move ?
@@ -51,7 +48,7 @@ class Game extends React.Component {
 
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.toHistory(move)}>{desc}</button>
         </li>
       );
     });
@@ -61,7 +58,7 @@ class Game extends React.Component {
     if (winner) {
       status = 'Winner: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -80,5 +77,20 @@ class Game extends React.Component {
     );
   }
 }
-  
-export default connect(mapStateToProps)(Game);
+
+function mapStateToProps ({ game }) {
+  return  {
+    history: game.history,
+    stepNumber: game.stepNumber,
+    xIsNext: game.xIsNext
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({
+    squareClick: squareClick,
+    jumpTo: jumpTo
+  }, dispatch);
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Game);

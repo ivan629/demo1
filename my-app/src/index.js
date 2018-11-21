@@ -9,9 +9,9 @@ import './index.css';
 const store = createStore (AllReducers);
 ReactDOM.render(
   <Provider store = {store}>
-    <Game />
+    <Game/>
   </Provider>,
   document.getElementById('root')
 );
-  
+
   

@@ -48,4 +48,12 @@ body {
   .game-info {
     margin-left: 20px;
   }
+
+
+
+  .sideBar {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #eeeeee;
+  }
   
