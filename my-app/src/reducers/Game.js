@@ -4,7 +4,8 @@ const initialState = {
   ],
   stepNumber: 0,
   xIsNext: true,
-  squareClicked: null
+  squareClicked: null,
+  number: 0
 };
 
 export default function(state = initialState, action) {
@@ -21,9 +22,9 @@ export default function(state = initialState, action) {
     };
   }
 
-  case 'SEE_HISTORY': {
-    const {stepNumber, xIsNext } = action.payload;
 
+  case 'SEE_HISTORY_ASYNC': {
+    const {stepNumber, xIsNext } = action.payload;
     return  {
       ...state,
       stepNumber,
@@ -31,6 +32,8 @@ export default function(state = initialState, action) {
 
     };
   }
+
+
 
   default: return state;
   }

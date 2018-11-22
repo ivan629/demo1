@@ -34,6 +34,7 @@ class Game extends React.Component {
       stepNumber: step,
       xIsNext: (step % 2) === 0,
     });
+
   }
 
   render() {
