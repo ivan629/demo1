@@ -7,7 +7,7 @@ export const squareClick = (square) => {
 
 export const jumpTo = (square) => {
   return {
-    type: 'SEE_HISTORY',
+    type: 'BEFORE_SEE_HISTORY',
     payload: square
   };
 };

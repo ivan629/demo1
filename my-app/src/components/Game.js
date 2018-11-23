@@ -1,31 +1,14 @@
-import React from 'react';
-import calculateWinner from './calculateWinner';
 import {connect} from 'react-redux';
-import Board from './Board';
 import {bindActionCreators} from 'redux';
 import  {squareClick, jumpTo} from '../actions/index';
-
+import React from 'react';
+import Board from './Board';
+import calculateWinner from './calculateWinner';
 
 class Game extends React.Component {
 
   handleClick(i) {
-
-    const { history, stepNumber, xIsNext } = this.props;
-    const gameHistory = history.slice(0, stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = xIsNext ? 'X' : 'O';
-
-    this.props.squareClick({
-      history: gameHistory.concat([{
-        squares: squares
-      }]),
-      stepNumber: gameHistory.length,
-      xIsNext: !xIsNext });
+    this.props.squareClick(i);
   }
 
   toHistory(step)

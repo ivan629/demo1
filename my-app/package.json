@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^5.1.1",
@@ -14,12 +13,13 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "redux-saga": "^0.15.0"
+    "redux-saga": "^0.15.0",
+    "babel-polyfill": "6.3.14"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "babel-node src/sagas.spec.js | tap-spec",
     "eject": "react-scripts eject",
     "eslint": "eslint src/",
     "eslintFix": "eslint src/ --fix"
@@ -34,7 +34,15 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.0",
+    "budo": "^11.5.0",
     "eslint": "^5.6.0",
+    "babel-cli": "^6.1.18",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-2": "^6.1.18",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-friendly-formatter": "^4.0.1",
@@ -43,6 +51,8 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "eslint-watch": "^4.0.2",
-    "npm-run-all": "^4.1.3"
+    "npm-run-all": "^4.1.3",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.2.2"
   }
 }

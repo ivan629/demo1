@@ -10,7 +10,16 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+
   case 'SQUARE_CLICKED': {
+
+    return {
+      ...state,
+      squareClicked: action.payload
+    };
+  }
+
+  case 'SET_SQUARE_STORE': {
 
     const { history, stepNumber, xIsNext } = action.payload;
 
@@ -23,7 +32,7 @@ export default function(state = initialState, action) {
   }
 
 
-  case 'SEE_HISTORY_ASYNC': {
+  case 'SEE_HISTORY': {
     const {stepNumber, xIsNext } = action.payload;
     return  {
       ...state,
