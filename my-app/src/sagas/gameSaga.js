@@ -1,4 +1,3 @@
-
 import { put, takeEvery, select}  from 'redux-saga/effects';
 
 function calculateWinner(squares) {
@@ -23,20 +22,19 @@ function calculateWinner(squares) {
   return null;
 }
 
-export function* handleClick(){
-  const token = yield select();
-  let i = token.game.squareClicked;
-  const { history, stepNumber, xIsNext } = token.game;
+export function* handleClick(action){
+
+  const state = yield select();
+  const { history, stepNumber, xIsNext } = state.game;
   const gameHistory = history.slice(0, stepNumber + 1);
   const current = history[history.length - 1];
   const squares = current.squares.slice();
-
+  let i = action.payload;
 
   if (calculateWinner(squares) || squares[i]) {
     return;
   }
   squares[i] = xIsNext ? 'X' : 'O';
-
 
   const newStore = {
     history: gameHistory.concat([{

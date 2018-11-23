@@ -2,8 +2,6 @@ import test from 'tape';
 import { put } from 'redux-saga/effects';
 import { seeStore } from './sagas/historySaga';
 
-
-
 test('incrementAsync Saga test', (assert) => {
   const gen = seeStore();
 
@@ -20,4 +18,5 @@ test('incrementAsync Saga test', (assert) => {
   );
 
   assert.end();
+
 });

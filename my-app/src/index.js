@@ -3,15 +3,12 @@ import { createStore,  applyMiddleware } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createSagaMiddleware from 'redux-saga';
-import AllReducers from './reducers/index';
-
-import Game from './components/Game';
 import  rootSaga  from './sagas/indexSaga';
+import AllReducers from './reducers/index';
 import './index.css';
-
+import Game from './components/Game';
 
 const sagaMiddleware = createSagaMiddleware();
-
 const store = createStore (
   AllReducers,
   applyMiddleware(sagaMiddleware));

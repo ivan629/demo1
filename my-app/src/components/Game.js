@@ -7,10 +7,6 @@ import calculateWinner from './calculateWinner';
 
 class Game extends React.Component {
 
-  handleClick(i) {
-    this.props.squareClick(i);
-  }
-
   toHistory(step)
   {
     this.props.jumpTo({
@@ -50,7 +46,7 @@ class Game extends React.Component {
         <div className="game-board">
           <Board
             squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
+            onClick={(i) => this.props.squareClick(i)}
           />
         </div>
         <div className="game-info">
