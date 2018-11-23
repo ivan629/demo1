@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import React from 'react';
 import { squareClick, jumpTo } from '../actions/index';
-import Board from './Board';
 import { calculateWinner }from '../sagas/gameSaga';
 import PropTypes from "prop-types";
+import Board from './Board';
+import React from 'react';
 
 class Game extends React.Component {
   toHistory(step) {
