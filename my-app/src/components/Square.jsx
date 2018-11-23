@@ -9,6 +9,9 @@ function Square(props) {
   );
 }
 
-
+Square.propTypes  = {
+  onclick: PropTypes.func,
+    value: PropTypes.string
+};
 
 export default Square;

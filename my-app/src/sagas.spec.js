@@ -7,7 +7,7 @@ test('incrementAsync Saga test', (assert) => {
 
   assert.deepEqual(
     gen.next().value,
-    put({type: 'SEE_HISTORY'}),
+    put({ type: 'SEE_HISTORY' }),
     'seeStoreAsync Saga must dispatch an SEE_HISTORY action'
   );
 
@@ -18,5 +18,4 @@ test('incrementAsync Saga test', (assert) => {
   );
 
   assert.end();
-
 });

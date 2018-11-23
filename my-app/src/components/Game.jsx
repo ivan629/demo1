@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import React from 'react';
 import { squareClick, jumpTo } from '../actions/index';
 import Board from './Board';
-import calculateWinner from './calculateWinner';
+import { calculateWinner }from '../sagas/gameSaga';
+import PropTypes from "prop-types";
 
 class Game extends React.Component {
   toHistory(step) {
@@ -67,5 +68,13 @@ function mapDispatchToProps(dispatch) {
     jumpTo
   }, dispatch);
 }
+
+Game.propTypes = {
+    jumpTo: PropTypes.func,
+    squareClick: PropTypes.func,
+    history: PropTypes.array,
+    stepNumber:  PropTypes.number,
+    xIsNext: PropTypes.bool
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);
