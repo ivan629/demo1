@@ -10,7 +10,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case 'SET_SQUARE_STORE': {
+    case 'SET_STORE': {
       const { history, stepNumber, xIsNext } = action.payload;
       return {
         ...state,

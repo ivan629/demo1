@@ -41,11 +41,12 @@ export function* handleClick(action) {
     stepNumber: gameHistory.length,
     xIsNext: !xIsNext };
   yield put({
-    type: 'SET_SQUARE_STORE',
+    type: 'SET_STORE',
     payload: newStore
   });
 }
 
 export function* squareClick() {
   yield takeEvery('SQUARE_CLICKED', handleClick);
+
 }
