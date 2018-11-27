@@ -1,6 +1,6 @@
 import React from 'react';
-import Square from './Square';
 import PropTypes from "prop-types";
+import Square from './Square';
 
 class Board extends React.Component {
   renderSquare(i) {

@@ -1,31 +1,25 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
-
-app.use(
-    bodyParser.urlencoded({
-        extended: true,
-    })
-);
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
 const cors = require('cors');
-const corsOptions = {
+
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+
+let corsOptions = {
     origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
 app.use(cors(corsOptions));
 
+module.exports = function(app, db) {
+};
+require('./app/config/db');
+require('./app/routes')(app, {});
+const port = 8080;
 
-require('./routes/game.route')(app);
-
-// Create a Server
-const server = app.listen(8080, function() {
-    let host = server.address().address;
-    let port = server.address().port;
-
-    console.log('App listening at http://localhost:%s', host, port);
+app.listen(port, () => {
+    console.log('We are live on ' + port);
 });

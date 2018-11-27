@@ -44,6 +44,10 @@ export function* handleClick(action) {
     type: 'SET_STORE',
     payload: newStore
   });
+
+    yield put({
+        type: 'AI_CLICK'
+    });
 }
 
 export function* squareClick() {

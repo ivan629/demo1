@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { squareClick, jumpTo } from '../actions/index';
+import { squareClick, jumpTo} from '../actions/index';
 import { calculateWinner }from '../sagas/gameSaga';
 import PropTypes from "prop-types";
 import Board from './Board';
@@ -35,8 +35,10 @@ class Game extends React.Component {
 
     if (winner) {
       status = `Winner: ${winner}`;
+
     } else {
       status = `Next player: ${xIsNext ? 'X' : 'O'}`;
+
     }
 
     return (

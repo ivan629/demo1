@@ -1,0 +1,22 @@
+
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb-base",
+    "rules": {
+        "no-param-reassign": [2, {"props": false}],
+        "no-plusplus": "off",
+        "max-len": ["error", 120],
+        "comma-dangle": ["error", "never"],
+        "class-methods-use-this": "off",
+        "object-curly-newline": "off",
+        "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "no-underscore-dangle": "off",
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": true
+            }
+        ]
+    }
+}

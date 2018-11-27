@@ -1,20 +1,29 @@
 {
-  "name": "tik-tak-toe",
+  "name": "tic-tak-toe",
   "version": "1.0.0",
-  "description": "",
+  "description": "Game tic-tak-toe",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "eslint": "eslint app/",
+    "eslintFix": "eslint app/ --fix",
+    "start": "nodemon server.js",
+    "test": "test"
   },
-  "keywords": [
-    "tik-tac-toe"
-  ],
   "author": "Ivan Holovach",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "cors": "^2.8.4",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
-    "sequelize": "^4.39.0"
+    "pg": "^7.6.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.41.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.7"
   }
 }

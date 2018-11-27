@@ -1,7 +1,8 @@
-import { takeEvery, select, put } from 'redux-saga/effects';
+import { takeEvery, select, put, call } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import { calculateWinner } from './gameSaga';
+import { urlSendData } from '../constants/Game';
 
-const urlSendData = 'http://localhost:8080/api/sendData';
 function getPreparedData(state, index) {
   const { history, stepNumber, xIsNext } = state.game;
   const gameHistory = history.slice(0, stepNumber + 1);
@@ -12,6 +13,7 @@ function getPreparedData(state, index) {
   if (calculateWinner(squares) || squares[i]) {
     return;
   }
+
   squares[i] = xIsNext ? 'X' : 'O';
 
   const newStore = {
@@ -27,8 +29,8 @@ function* sendData() {
   const state = yield select();
   const { history } = state.game;
   const lastHistory = history.slice(-1)[0];
-  let aiStepHistory;
   let index;
+
   yield fetch(urlSendData, {
     method: 'POST',
     headers: {
@@ -41,16 +43,17 @@ function* sendData() {
   })
     .then(response => response.json())
     .then((resp) => {
-      aiStepHistory = resp.newHistory;
       index = resp.indexAi;
     });
 
+  yield call(delay, 200);
+  const newState = yield call(getPreparedData, state, index);
   yield put({
     type: 'SET_STORE',
-    payload: getPreparedData(state, index)
+    payload: newState
   });
 }
 
-export function* dbSaga() {
-  yield takeEvery('SQUARE_CLICKED', sendData);
+export function* aiStep() {
+  yield takeEvery('AI_CLICK', sendData);
 }

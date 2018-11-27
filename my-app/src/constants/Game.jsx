@@ -1,0 +1,1 @@
+export const urlSendData = 'http://localhost:8080/api/aiProcessor';
