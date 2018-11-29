@@ -1,4 +1,4 @@
-import { put, takeEvery, select } from 'redux-saga/effects';
+import { put, takeEvery, select, call } from 'redux-saga/effects';
 
 export function calculateWinner(squares) {
   const lines = [
@@ -21,9 +21,28 @@ export function calculateWinner(squares) {
   return null;
 }
 
+export function* checkGamePicture() {
+    const state = yield select();
+    const { history, stepNumber, xIsNext } = state.game;
+
+    const current = history[stepNumber];
+    const winner = calculateWinner(current.squares);
+
+    const lastHistory = history.slice(-1)[0];
+if(check(lastHistory.squares) || (winner)) {
+  alert('finish');
+}
+    function check(x) {
+        return x.every(function(i){ return typeof i === "string" });
+    }
+}
+
+
+
 export function* handleClick(action) {
   const state = yield select();
   const { history, stepNumber, xIsNext } = state.game;
+
   const gameHistory = history.slice(0, stepNumber + 1);
   const current = history[history.length - 1];
   const squares = current.squares.slice();
@@ -44,13 +63,13 @@ export function* handleClick(action) {
     type: 'SET_STORE',
     payload: newStore
   });
-
+  yield call(checkGamePicture);
     yield put({
         type: 'AI_CLICK'
     });
+
 }
 
 export function* squareClick() {
   yield takeEvery('SQUARE_CLICKED', handleClick);
-
 }

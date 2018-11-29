@@ -1,7 +1,7 @@
 import { takeEvery, select, put, call } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { calculateWinner } from './gameSaga';
-import { urlSendData } from '../constants/Game';
+import { calculateWinner, checkGamePicture } from './gameSaga';
+import { urlSendData, urlSendRole } from '../constants/Game';
 
 function getPreparedData(state, index) {
   const { history, stepNumber, xIsNext } = state.game;
@@ -44,16 +44,46 @@ function* sendData() {
     .then(response => response.json())
     .then((resp) => {
       index = resp.indexAi;
+    })
+    .catch((errorMessage) => {
+      console.log(errorMessage);
     });
 
+  yield put({
+    type: 'SET_VISIBLE_ROLE_OPTIONS',
+    payload: false
+  });
   yield call(delay, 200);
   const newState = yield call(getPreparedData, state, index);
   yield put({
     type: 'SET_STORE',
     payload: newState
   });
+  yield call(checkGamePicture);
+}
+
+export function* sendRoleServer() {
+  const state = yield select();
+  const role = state.game.isButtonPressedValue;
+  yield fetch(urlSendRole, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      data: role
+    })
+  })
+    .then(response => response.json())
+    .then((resp) => {
+    })
+    .catch((errorMessage) => {
+      console.log(errorMessage);
+    });
 }
 
 export function* aiStep() {
   yield takeEvery('AI_CLICK', sendData);
+  yield takeEvery('SEND_ROLE_TO_SERVER', sendRoleServer);
 }

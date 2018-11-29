@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { squareClick, jumpTo} from '../actions/index';
+import { squareClick, jumpTo, switchPlayer} from '../actions/index';
 import { calculateWinner }from '../sagas/gameSaga';
+import React from 'react';
 import PropTypes from "prop-types";
 import Board from './Board';
-import React from 'react';
+import Menu from './Menu';
+import RoleOptions from './RoleOptions';
+
 
 class Game extends React.Component {
   toHistory(step) {
@@ -14,7 +17,18 @@ class Game extends React.Component {
     });
   }
 
+    renderRoleOptions(){
+        if(this.props.isRoleOptionsVisible) {
+            return(
+                <RoleOptions text={"Choose role"}/>
+            )
+        }
+        return null;
+    }
+
+
   render() {
+
     const { history, stepNumber, xIsNext } = this.props;
 
     const current = history[stepNumber];
@@ -36,6 +50,7 @@ class Game extends React.Component {
     if (winner) {
       status = `Winner: ${winner}`;
 
+
     } else {
       status = `Next player: ${xIsNext ? 'X' : 'O'}`;
 
@@ -43,6 +58,10 @@ class Game extends React.Component {
 
     return (
       <div className="game">
+          <div className="menu-container">
+          <Menu />
+          {this.renderRoleOptions()}
+          </ div>
         <div className="game-board">
           <Board squares={current.squares}
             onClick={i => this.props.squareClick(i)} />
@@ -52,6 +71,7 @@ class Game extends React.Component {
           <ol>{moves}</ol>
         </div>
       </div>
+
     );
   }
 }
@@ -60,20 +80,23 @@ function mapStateToProps({ game }) {
   return {
     history: game.history,
     stepNumber: game.stepNumber,
-    xIsNext: game.xIsNext
+    xIsNext: game.xIsNext,
+    isRoleOptionsVisible: game.isRoleOptionsVisible
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     squareClick,
-    jumpTo
+    jumpTo,
+    switchPlayer
   }, dispatch);
 }
 
 Game.propTypes = {
     jumpTo: PropTypes.func,
     squareClick: PropTypes.func,
+    isRoleOptionsVisible: PropTypes.bool,
     history: PropTypes.array,
     stepNumber:  PropTypes.number,
     xIsNext: PropTypes.bool

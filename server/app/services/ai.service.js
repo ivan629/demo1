@@ -1,4 +1,5 @@
-const AiRole = 'O';
+let AiRole;
+let humanRole;
 function newSteps(steps) {
   steps.forEach((item, i) => {
     if (item === null) { steps[i] = i; }
@@ -8,7 +9,7 @@ function newSteps(steps) {
 
 function getBestStep(origBoard) {
   // human
-  const huPlayer = 'X';
+  const huPlayer = humanRole;
   // ai
   const aiPlayer = AiRole;
 
@@ -30,7 +31,6 @@ function getBestStep(origBoard) {
 
     // available spots
     const availSpots = emptyIndexies(newBoard);
-
     // checks for the terminal states such as win, lose, and tie and returning a value accordingly
     if (winning(newBoard, huPlayer)) {
       return { score: -10 };
@@ -127,5 +127,10 @@ exports.gameProcessor = (req, res) => {
   res.json({
     indexAi: aiStep
   });
+};
+
+exports.setRole = (req) => {
+  req.body.data ? (AiRole = 'O', humanRole = 'X') : (AiRole = 'X', humanRole = 'O');
+  console.log(AiRole);
 };
 

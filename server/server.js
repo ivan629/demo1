@@ -16,7 +16,7 @@ app.use(cors(corsOptions));
 
 module.exports = function(app, db) {
 };
-require('./app/config/db');
+// require('./app/config/db');
 require('./app/routes')(app, {});
 const port = 8080;
 

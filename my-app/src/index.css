@@ -1,6 +1,7 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
+  background: rgba(238, 238, 238, 1);
   }
   
   ol, ul {
@@ -18,11 +19,10 @@ body {
   }
   
   .square {
-    background: #fff;
-    border: 1px solid #999;
+   background: rgba(240, 129, 4, 1);
+    border: 5px solid rgba(238, 238, 238, 1);
     float: left;
     font-size: 100px;
-    font-weight: bold;
     line-height: 34px;
     height: 100px;
     margin-right: -1px;
@@ -42,7 +42,10 @@ body {
   }
   
   .game {
-
+    margin: 0 auto;
+    width: 50%;
+    /*border: 1px solid black;*/
+    position: relative;
     justify-content: center;
     display: flex;
     flex-direction: row;
@@ -61,4 +64,71 @@ body {
   .game-info {
     margin-left: 20px;
   }
+
+  .menu {
+    margin: 0 auto;
+  }
+  .menu-button{
+    background: rgba(85, 85, 85, 1);
+    cursor: pointer;
+   width: 100px;
+    height: 50px;
+    color: #ffffff;
+    margin: 10px;
+  }
+.menu-button:hover{
+  background: rgba(85, 85, 85, 0.7);
+}
+.menu-button-focus {
+background: rgba(66, 105, 174, 1);
+}
+
+  .options-wrapper {
+margin: 10px auto;
+    font-size: 14px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    top: 70px;
+    /*position: absolute;*/
+    width: 90%;
+    height: 50px;
+  }
+  .option-title{
+    font-size: 24px;
+    text-align: center;
+    width: auto;
+    color: black;
+  }
+  .role-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width:auto;
+  }
+  .role {
+    width: 50px;
+    display: inline-block;
+    height: 25%;
+    font-size: 34px;
+    color: #ffffff;
+    border: 5px solid rgba(238, 238, 238, 1);
+    background: rgba(66, 105, 174, 1);
+    cursor: pointer;
+    padding: 0 20px;
+    text-align: center;
+  }
+/*.role:hover {*/
+  /*background: rgba(66, 105, 174, 0.8);*/
+/*}*/
+  .menu-container {
+    position: relative;
+  }
+
+  /**/
+.toggled {
+    background-color:  rgba(46, 255, 0, 0.7);
+    color: rgba(85, 85, 85, 1);
+}
+
 

@@ -5,7 +5,10 @@ const initialState = {
   stepNumber: 0,
   xIsNext: true,
   squareClicked: null,
-  number: 0
+  number: 0,
+  isHumanPlayer: true,
+  isRoleOptionsVisible: false,
+  isButtonPressedValue: true
 };
 
 export default function (state = initialState, action) {
@@ -30,7 +33,27 @@ export default function (state = initialState, action) {
 
       };
     }
+      case 'SET_SWITCH_PLAYER': {
+          return {
+              ...state, isHumanPlayer:  action.payload
+          };
 
-    default: return state;
+      }
+
+      case 'SET_VISIBLE_ROLE_OPTIONS': {
+          return {
+              ...state, isRoleOptionsVisible:  action.payload
+          }
+      }
+
+      case 'SEND_ROLE_TO_SERVER': {
+          return {
+              ...state,
+              isButtonPressedValue: !state.isButtonPressedValue,
+              xIsNext: !state.isButtonPressedValue
+          };
+      }
+
+      default: return state;
   }
 }
