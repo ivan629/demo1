@@ -46,7 +46,6 @@ function* sendData() {
       index = resp.indexAi;
     })
     .catch((errorMessage) => {
-      console.log(errorMessage);
     });
 
   yield put({
@@ -79,7 +78,6 @@ export function* sendRoleServer() {
     .then((resp) => {
     })
     .catch((errorMessage) => {
-      console.log(errorMessage);
     });
 }
 

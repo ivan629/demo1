@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createSagaMiddleware from 'redux-saga';
@@ -11,7 +12,7 @@ import Game from './components/Game';
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   AllReducers,
-  applyMiddleware(sagaMiddleware)
+  applyMiddleware(sagaMiddleware, logger)
 );
 
 sagaMiddleware.run(rootSaga);

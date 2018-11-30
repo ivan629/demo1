@@ -15,8 +15,8 @@ class RoleOptions extends React.Component {
             <div className="options-wrapper">
                 <div className="option-title">Choose role</div>
                 <div className="role-container">
-                    <div className={this.props.isButtonPressedValue ? "role toggled" : "role"} onClick={() => this.chooseRole(true)}>X</div>
-                    <div className={this.props.isButtonPressedValue ? "role" : "role toggled"} onClick={() => this.chooseRole(false)}>O</div>
+                    <div className={this.props.isButtonPressedValue ? "role toggled border" : "role border"} onClick={() => this.chooseRole(true)}>X</div>
+                    <div className={this.props.isButtonPressedValue ? "role border" : "role toggled border"} onClick={() => this.chooseRole(false)}>O</div>
                 </div>
             </div>
         );

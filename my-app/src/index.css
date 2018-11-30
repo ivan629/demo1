@@ -69,16 +69,17 @@ body {
     margin: 0 auto;
   }
   .menu-button{
+
+      display: inline-block;
     background: rgba(85, 85, 85, 1);
     cursor: pointer;
-   width: 100px;
-    height: 50px;
+  padding: 10px;
     color: #ffffff;
     margin: 10px;
   }
-.menu-button:hover{
-  background: rgba(85, 85, 85, 0.7);
-}
+/*.menu-button:hover{*/
+  /*background: rgba(85, 85, 85, 0.7);*/
+/*}*/
 .menu-button-focus {
 background: rgba(66, 105, 174, 1);
 }
@@ -106,14 +107,18 @@ margin: 10px auto;
     margin: 0 auto;
     width:auto;
   }
-  .role {
+  .border{
+      border: 2px solid rgba(85, 85, 85, 0.4);
+      border-radius: 5px;
+  }
+
+.role {
     width: 50px;
     display: inline-block;
     height: 25%;
     font-size: 34px;
-    color: #ffffff;
-    border: 5px solid rgba(238, 238, 238, 1);
-    background: rgba(66, 105, 174, 1);
+    color: rgba(76, 143, 251, 1);
+      margin: 0 5px;
     cursor: pointer;
     padding: 0 20px;
     text-align: center;
@@ -127,8 +132,8 @@ margin: 10px auto;
 
   /**/
 .toggled {
-    background-color:  rgba(46, 255, 0, 0.7);
-    color: rgba(85, 85, 85, 1);
+    background-color:  rgba(76, 143, 251, 1);
+    color: #ffffff;
 }
 
 

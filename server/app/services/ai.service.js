@@ -48,6 +48,7 @@ function getBestStep(origBoard) {
       // create an object for each and store the index
       // of that spot that was stored as a number in the object's index key
       const move = {};
+
       move.index = newBoard[availSpots[i]];
 
       // set the empty spot to the current player
@@ -115,7 +116,6 @@ function getBestStep(origBoard) {
     }
     return false;
   }
-
   return bestSpot.index;
 }
 
@@ -131,6 +131,5 @@ exports.gameProcessor = (req, res) => {
 
 exports.setRole = (req) => {
   req.body.data ? (AiRole = 'O', humanRole = 'X') : (AiRole = 'X', humanRole = 'O');
-  console.log(AiRole);
 };
 

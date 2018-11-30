@@ -1,4 +1,5 @@
 import { put, takeEvery, select, call } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 
 export function calculateWinner(squares) {
   const lines = [
@@ -30,7 +31,7 @@ export function* checkGamePicture() {
 
     const lastHistory = history.slice(-1)[0];
 if(check(lastHistory.squares) || (winner)) {
-  alert('finish');
+    alert('finished ' )
 }
     function check(x) {
         return x.every(function(i){ return typeof i === "string" });
@@ -41,7 +42,7 @@ if(check(lastHistory.squares) || (winner)) {
 
 export function* handleClick(action) {
   const state = yield select();
-  const { history, stepNumber, xIsNext } = state.game;
+  const { history, stepNumber, xIsNext, isHumanPlayer } = state.game;
 
   const gameHistory = history.slice(0, stepNumber + 1);
   const current = history[history.length - 1];
@@ -59,15 +60,21 @@ export function* handleClick(action) {
     }]),
     stepNumber: gameHistory.length,
     xIsNext: !xIsNext };
+
+    yield put({
+        type: 'SET_VISIBLE_ROLE_OPTIONS',
+        payload: false
+    });
   yield put({
     type: 'SET_STORE',
     payload: newStore
   });
   yield call(checkGamePicture);
-    yield put({
-        type: 'AI_CLICK'
-    });
-
+  if(!isHumanPlayer) {
+      yield put({
+          type: 'AI_CLICK'
+      });
+  }
 }
 
 export function* squareClick() {

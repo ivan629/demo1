@@ -4,9 +4,9 @@
   "description": "Game tic-tak-toe",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server.js",
     "eslint": "eslint app/",
     "eslintFix": "eslint app/ --fix",
-    "start": "nodemon server.js",
     "test": "test"
   },
   "author": "Ivan Holovach",

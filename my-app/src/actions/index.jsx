@@ -23,3 +23,4 @@ export const isRoleChosen = square => ({
     payload: square
 });
 
+

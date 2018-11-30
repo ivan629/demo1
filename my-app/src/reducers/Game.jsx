@@ -33,11 +33,21 @@ export default function (state = initialState, action) {
 
       };
     }
+
+      case 'CLEAR_HISTORY': {
+          return {
+              ...state,
+              stepNumber: initialState.stepNumber,
+              xIsNext: initialState.xIsNext,
+              history: initialState.history,
+              squareClicked: initialState.squareClicked
+          };
+      }
+
       case 'SET_SWITCH_PLAYER': {
           return {
               ...state, isHumanPlayer:  action.payload
           };
-
       }
 
       case 'SET_VISIBLE_ROLE_OPTIONS': {
@@ -47,10 +57,11 @@ export default function (state = initialState, action) {
       }
 
       case 'SEND_ROLE_TO_SERVER': {
+          console.log(action.payload);
           return {
               ...state,
-              isButtonPressedValue: !state.isButtonPressedValue,
-              xIsNext: !state.isButtonPressedValue
+              isButtonPressedValue: action.payload,
+              xIsNext: action.payload
           };
       }
 

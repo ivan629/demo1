@@ -1,7 +1,10 @@
-import { put, take, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
-export function* menuOperation() {
-  const action = yield take('SWITCH_PLAYER');
+export function* menuOperation(action) {
+  yield put({
+    type: 'SET_VISIBLE_ROLE_OPTIONS',
+    payload: true
+  });
 
   yield put({
     type: 'SET_SWITCH_PLAYER',
@@ -9,13 +12,11 @@ export function* menuOperation() {
   });
 
   yield put({
-    type: 'SET_VISIBLE_ROLE_OPTIONS',
-    payload: true
+    type: 'CLEAR_HISTORY'
   });
 }
 
-export function* roleOperation() {
-  const action = yield take('PLAYER_ROLE');
+export function* roleOperation(action) {
   yield put({
     type: 'SEND_ROLE_TO_SERVER',
     payload: action.payload
