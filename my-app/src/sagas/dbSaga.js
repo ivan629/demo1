@@ -1,7 +1,14 @@
 import { takeEvery, select, put, call } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+
 import { calculateWinner, checkGamePicture } from './gameSaga';
 import { urlSendData, urlSendRole } from '../constants/Game';
+
+import {
+  SET_VISIBLE_ROLE_OPTIONS,
+  AI_CLICK,
+  SEND_ROLE_TO_SERVER
+} from '../constants/Game';
 
 function getPreparedData(state, index) {
   const { history, stepNumber, xIsNext } = state.game;
@@ -49,7 +56,7 @@ function* sendData() {
     });
 
   yield put({
-    type: 'SET_VISIBLE_ROLE_OPTIONS',
+    type: SET_VISIBLE_ROLE_OPTIONS,
     payload: false
   });
   yield call(delay, 200);
@@ -82,6 +89,6 @@ export function* sendRoleServer() {
 }
 
 export function* aiStep() {
-  yield takeEvery('AI_CLICK', sendData);
-  yield takeEvery('SEND_ROLE_TO_SERVER', sendRoleServer);
+  yield takeEvery(AI_CLICK, sendData);
+  yield takeEvery(SEND_ROLE_TO_SERVER, sendRoleServer);
 }

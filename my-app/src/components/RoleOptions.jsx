@@ -1,11 +1,11 @@
 import { bindActionCreators } from 'redux';
-import connect from "react-redux/es/connect/connect";
 import React from 'react';
-import {isRoleChosen} from "../actions";
+import connect from "react-redux/es/connect/connect";
 import PropTypes from "prop-types";
 
-class RoleOptions extends React.Component {
+import {isRoleChosen} from "../actions";
 
+class RoleOptions extends React.Component {
     chooseRole(value){
         this.props.isRoleChosen(value);
     }

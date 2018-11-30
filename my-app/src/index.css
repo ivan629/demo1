@@ -1,7 +1,7 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-  background: rgba(238, 238, 238, 1);
+    background: rgba(238, 238, 238, 1);
   }
   
   ol, ul {
@@ -19,7 +19,9 @@ body {
   }
   
   .square {
-   background: rgba(240, 129, 4, 1);
+    cursor: pointer;
+    color: rgba(85, 85, 85, 1);
+    background: rgba(240, 129, 4, 1);
     border: 5px solid rgba(238, 238, 238, 1);
     float: left;
     font-size: 100px;
@@ -45,7 +47,7 @@ body {
     margin: 0 auto;
     width: 50%;
     /*border: 1px solid black;*/
-    position: relative;
+    -position: relative;
     justify-content: center;
     display: flex;
     flex-direction: row;
@@ -69,23 +71,21 @@ body {
     margin: 0 auto;
   }
   .menu-button{
-
-      display: inline-block;
-    background: rgba(85, 85, 85, 1);
+    font-size: 18px;
+    display: inline-block;
+    background: #ffffff;
     cursor: pointer;
-  padding: 10px;
-    color: #ffffff;
+    padding: 10px;
     margin: 10px;
+    color: rgba(76, 143, 251, 1);
   }
-/*.menu-button:hover{*/
-  /*background: rgba(85, 85, 85, 0.7);*/
-/*}*/
+
 .menu-button-focus {
 background: rgba(66, 105, 174, 1);
 }
 
   .options-wrapper {
-margin: 10px auto;
+    margin: 10px auto;
     font-size: 14px;
     justify-content: center;
     display: flex;
@@ -96,10 +96,11 @@ margin: 10px auto;
     height: 50px;
   }
   .option-title{
+      text-transform: uppercase;
     font-size: 24px;
     text-align: center;
     width: auto;
-    color: black;
+    color: rgba(85, 85, 85, 1);
   }
   .role-container {
     display: flex;
@@ -118,17 +119,14 @@ margin: 10px auto;
     height: 25%;
     font-size: 34px;
     color: rgba(76, 143, 251, 1);
-      margin: 0 5px;
+    margin: 0 5px;
     cursor: pointer;
     padding: 0 20px;
     text-align: center;
   }
 .game-board {
-    position: relative;
+    -position: relative;
 }
-/*.role:hover {*/
-  /*background: rgba(66, 105, 174, 0.8);*/
-/*}*/
   .menu-container {
     position: relative;
   }
@@ -139,14 +137,54 @@ margin: 10px auto;
     color: #ffffff;
 }
 .end-game{
+    z-index: 1;
+    text-align: center;
     font-size: 18px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     color: #ffffff;
-    padding: 10px 70px;
-    background: rgba(85, 85, 85, 0.7);
+    padding: 10px 120px;
+    width: 100%;
+    height: 100%;
+    background: rgba(85, 85, 85, 0.9);
+}
+.container-button-end-game {
+    justify-content: end;
+}
+.button-end-game{
+    display: inline-block;
+    transition: 0.1s;
+    cursor: pointer;
+    margin: 10px;
+    width: 10%;
+    padding: 10px 40px;
+    background: #ffffff;
+    color: rgba(76, 143, 251, 1);
+}
+.button-end-game:hover {
+    background-color:  rgba(76, 143, 251, 1);
+    color: #ffffff;
+}
+.end-game-text {
+    font-size: 34px;
+    text-transform: uppercase;
+    margin-top: 150px;
+}
+
+.winner{
+    text-transform: uppercase;
+    font-size: 38px;
+    color: rgba(76, 143, 251, 1);
+}
+
+/*auth*/
+
+.auth-container{
+    width: 300px;
+    height: 500px;
+    background: gba(85, 85, 85, 0.4);
 }
 
 

@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux';
 import connect from "react-redux/es/connect/connect";
 import PropTypes from "prop-types";
 import React from 'react';
+
 import {switchPlayer, isRoleChosen} from "../actions";
 
 class RoleOptions extends React.Component {
@@ -40,7 +41,8 @@ RoleOptions.propTypes  = {
     stepNumber: PropTypes.number,
     xIsNext: PropTypes.bool,
     switchPlayer: PropTypes.func,
-    switchRoleOptions: PropTypes.func
+    switchRoleOptions: PropTypes.func,
+    isHumanPlayer: PropTypes.bool
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoleOptions);

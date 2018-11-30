@@ -5,7 +5,6 @@ const initialState = {
   stepNumber: 0,
   xIsNext: true,
   squareClicked: null,
-  number: 0,
   isHumanPlayer: true,
   isRoleOptionsVisible: false,
   isButtonPressedValue: true,
@@ -41,7 +40,8 @@ export default function (state = initialState, action) {
               stepNumber: initialState.stepNumber,
               xIsNext: initialState.xIsNext,
               history: initialState.history,
-              squareClicked: initialState.squareClicked
+              squareClicked: initialState.squareClicked,
+              isHumanPlayer: initialState.isHumanPlayer
           };
       }
 
@@ -58,7 +58,6 @@ export default function (state = initialState, action) {
       }
 
       case 'SEND_ROLE_TO_SERVER': {
-          console.log(action.payload);
           return {
               ...state,
               isButtonPressedValue: action.payload,

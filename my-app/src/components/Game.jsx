@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { squareClick, jumpTo, switchPlayer} from '../actions/index';
-import { calculateWinner }from '../sagas/gameSaga';
 import React from 'react';
 import PropTypes from "prop-types";
+
+import { squareClick, jumpTo, switchPlayer, isRoleChosen,} from '../actions/index';
+import { calculateWinner }from '../sagas/gameSaga';
 import Board from './Board';
 import Menu from './Menu';
 import EndGame from './EndGame';
 import RoleOptions from './RoleOptions';
 
-
 class Game extends React.Component {
-  toHistory(step) {
+    toHistory(step) {
     this.props.jumpTo({
       stepNumber: step,
       xIsNext: (step % 2) === 0
@@ -19,6 +19,7 @@ class Game extends React.Component {
   }
 
     renderRoleOptions(){
+
         if(this.props.isRoleOptionsVisible) {
             return(
                 <RoleOptions text={"Choose role"}/>
@@ -27,20 +28,22 @@ class Game extends React.Component {
         return null;
     }
 
-    renderEndGame(){
+    renderEndGame(winner){
+
         if(this.props.isEndGame) {
             return(
-                <EndGame />
+                <EndGame winner={winner}/>
             )
         }
         return null;
     }
 
+    componentDidMount(){
+     this.props.isRoleChosen(true);
+    }
 
   render() {
-
     const { history, stepNumber, xIsNext } = this.props;
-
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
@@ -68,12 +71,12 @@ class Game extends React.Component {
 
     return (
       <div className="game">
+          {this.renderEndGame(winner)}
           <div className="menu-container">
           <Menu />
           {this.renderRoleOptions()}
           </ div>
         <div className="game-board">
-            {this.renderEndGame()}
           <Board squares={current.squares}
             onClick={i => this.props.squareClick(i)} />
         </div>
@@ -101,7 +104,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     squareClick,
     jumpTo,
-    switchPlayer
+    switchPlayer,
+      isRoleChosen
   }, dispatch);
 }
 
@@ -111,7 +115,8 @@ Game.propTypes = {
     isRoleOptionsVisible: PropTypes.bool,
     history: PropTypes.array,
     stepNumber:  PropTypes.number,
-    xIsNext: PropTypes.bool
+    xIsNext: PropTypes.bool,
+    isRoleChosen: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

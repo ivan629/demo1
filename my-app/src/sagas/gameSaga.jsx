@@ -1,6 +1,14 @@
 import { put, takeEvery, select, call } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
+import {
+    SQUARE_CLICKED,
+    SET_END_GAME,
+    SET_STORE,
+    SET_VISIBLE_ROLE_OPTIONS
+} from '../constants/Game';
+
+
 export function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
@@ -21,12 +29,10 @@ export function calculateWinner(squares) {
   }
   return null;
 }
-export function endGame() {
 
-}
 export function* checkGamePicture() {
     const state = yield select();
-    const { history, stepNumber, xIsNext } = state.game;
+    const { history, stepNumber } = state.game;
 
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
@@ -35,28 +41,20 @@ export function* checkGamePicture() {
 if(check(lastHistory.squares) || (winner)) {
     yield call(delay, 500);
     yield put({
-        type: 'SET_END_GAME',
+        type: SET_END_GAME,
         payload: true
     });
     yield call(delay, 1000);
 
-    yield put({
-        type: 'SET_END_GAME',
-        payload: false
-    });
 }
     function check(x) {
         return x.every(function(i){ return typeof i === "string" });
     }
 }
 
-
-
-
 export function* handleClick(action) {
   const state = yield select();
   const { history, stepNumber, xIsNext, isHumanPlayer } = state.game;
-
   const gameHistory = history.slice(0, stepNumber + 1);
   const current = history[history.length - 1];
   const squares = current.squares.slice();
@@ -75,11 +73,11 @@ export function* handleClick(action) {
     xIsNext: !xIsNext };
 
     yield put({
-        type: 'SET_VISIBLE_ROLE_OPTIONS',
+        type: SET_VISIBLE_ROLE_OPTIONS,
         payload: false
     });
   yield put({
-    type: 'SET_STORE',
+    type: SET_STORE,
     payload: newStore
   });
   yield call(checkGamePicture);
@@ -91,5 +89,5 @@ export function* handleClick(action) {
 }
 
 export function* squareClick() {
-  yield takeEvery('SQUARE_CLICKED', handleClick);
+  yield takeEvery(SQUARE_CLICKED, handleClick);
 }
