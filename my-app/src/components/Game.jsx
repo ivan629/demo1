@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import Board from './Board';
 import Menu from './Menu';
+import EndGame from './EndGame';
 import RoleOptions from './RoleOptions';
 
 
@@ -21,6 +22,15 @@ class Game extends React.Component {
         if(this.props.isRoleOptionsVisible) {
             return(
                 <RoleOptions text={"Choose role"}/>
+            )
+        }
+        return null;
+    }
+
+    renderEndGame(){
+        if(this.props.isEndGame) {
+            return(
+                <EndGame />
             )
         }
         return null;
@@ -63,6 +73,7 @@ class Game extends React.Component {
           {this.renderRoleOptions()}
           </ div>
         <div className="game-board">
+            {this.renderEndGame()}
           <Board squares={current.squares}
             onClick={i => this.props.squareClick(i)} />
         </div>
@@ -81,7 +92,8 @@ function mapStateToProps({ game }) {
     history: game.history,
     stepNumber: game.stepNumber,
     xIsNext: game.xIsNext,
-    isRoleOptionsVisible: game.isRoleOptionsVisible
+    isRoleOptionsVisible: game.isRoleOptionsVisible,
+    isEndGame: game.isEndGame
   };
 }
 

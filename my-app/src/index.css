@@ -123,6 +123,9 @@ margin: 10px auto;
     padding: 0 20px;
     text-align: center;
   }
+.game-board {
+    position: relative;
+}
 /*.role:hover {*/
   /*background: rgba(66, 105, 174, 0.8);*/
 /*}*/
@@ -134,6 +137,16 @@ margin: 10px auto;
 .toggled {
     background-color:  rgba(76, 143, 251, 1);
     color: #ffffff;
+}
+.end-game{
+    font-size: 18px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: #ffffff;
+    padding: 10px 70px;
+    background: rgba(85, 85, 85, 0.7);
 }
 
 

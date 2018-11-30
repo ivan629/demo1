@@ -8,7 +8,8 @@ const initialState = {
   number: 0,
   isHumanPlayer: true,
   isRoleOptionsVisible: false,
-  isButtonPressedValue: true
+  isButtonPressedValue: true,
+  isEndGame: false
 };
 
 export default function (state = initialState, action) {
@@ -62,6 +63,13 @@ export default function (state = initialState, action) {
               ...state,
               isButtonPressedValue: action.payload,
               xIsNext: action.payload
+          };
+      }
+
+      case 'SET_END_GAME': {
+          return {
+              ...state,
+              isEndGame: action.payload
           };
       }
 

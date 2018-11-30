@@ -21,7 +21,9 @@ export function calculateWinner(squares) {
   }
   return null;
 }
+export function endGame() {
 
+}
 export function* checkGamePicture() {
     const state = yield select();
     const { history, stepNumber, xIsNext } = state.game;
@@ -31,12 +33,23 @@ export function* checkGamePicture() {
 
     const lastHistory = history.slice(-1)[0];
 if(check(lastHistory.squares) || (winner)) {
-    alert('finished ' )
+    yield call(delay, 500);
+    yield put({
+        type: 'SET_END_GAME',
+        payload: true
+    });
+    yield call(delay, 1000);
+
+    yield put({
+        type: 'SET_END_GAME',
+        payload: false
+    });
 }
     function check(x) {
         return x.every(function(i){ return typeof i === "string" });
     }
 }
+
 
 
 
