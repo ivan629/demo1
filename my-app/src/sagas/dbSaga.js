@@ -5,10 +5,10 @@ import { calculateWinner, checkGamePicture } from './gameSaga';
 import { urlSendData, urlSendRole } from '../constants/Game';
 
 import {
-  SET_VISIBLE_ROLE_OPTIONS,
+  HIDE_ROLE_OPTIONS,
   AI_CLICK,
   SEND_ROLE_TO_SERVER
-} from '../constants/Game';
+} from '../actions/index';
 
 function getPreparedData(state, index) {
   const { history, stepNumber, xIsNext } = state.game;
@@ -18,7 +18,7 @@ function getPreparedData(state, index) {
   const i = index;
 
   if (calculateWinner(squares) || squares[i]) {
-    return;
+    return false;
   }
 
   squares[i] = xIsNext ? 'X' : 'O';
@@ -51,16 +51,14 @@ function* sendData() {
     .then(response => response.json())
     .then((resp) => {
       index = resp.indexAi;
-    })
-    .catch((errorMessage) => {
     });
 
   yield put({
-    type: SET_VISIBLE_ROLE_OPTIONS,
+    type: HIDE_ROLE_OPTIONS,
     payload: false
   });
   yield call(delay, 200);
-  const newState = yield call(getPreparedData, state, index);
+  const newState = getPreparedData(state, index);
   yield put({
     type: 'SET_STORE',
     payload: newState
@@ -82,9 +80,7 @@ export function* sendRoleServer() {
     })
   })
     .then(response => response.json())
-    .then((resp) => {
-    })
-    .catch((errorMessage) => {
+    .then(() => {
     });
 }
 

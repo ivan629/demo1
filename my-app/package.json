@@ -22,8 +22,8 @@
     "build": "react-scripts build",
     "test": "babel-node src/sagas.spec.js | tap-spec",
     "eject": "react-scripts eject",
-    "eslint": "eslint src/",
-    "eslintFix": "eslint src/ --fix"
+    "eslint": "eslint --ext .css --ext .jsx --ext .js src/",
+    "eslintFix": "eslint --ext .css --ext .jsx --ext .js src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

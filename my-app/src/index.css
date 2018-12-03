@@ -1,5 +1,6 @@
-body {
-    font: 14px "Century Gothic", Futura, sans-serif;
+    body {
+    font-size: 14px;
+    font-family: "Century Gothic", Futura, sans-serif;
     margin: 20px;
     background: rgba(238, 238, 238, 1);
   }

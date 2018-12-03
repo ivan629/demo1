@@ -3,6 +3,8 @@
     "parser": "babel-eslint",
     "extends": "airbnb-base",
     "rules": {
+        "no-unused-expressions": "off",
+        "prefer-destructuring": ["error", {"object": false, "array": false}],
         "no-param-reassign": [2, {"props": false}],
         "no-plusplus": "off",
         "max-len": ["error", 120],

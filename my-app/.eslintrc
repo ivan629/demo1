@@ -12,6 +12,7 @@
     "jsx-a11y"
   ],
   "rules": {
+    "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
     "max-len": ["error", 120],
     "comma-dangle": "off",
     "class-methods-use-this": "off",

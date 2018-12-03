@@ -1,46 +1,44 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import { squareClick, jumpTo, switchPlayer, isRoleChosen,} from '../actions/index';
-import { calculateWinner }from '../sagas/gameSaga';
+import { squareClick, jumpTo, switchPlayer, isRoleChosen, } from '../actions/index';
+import { calculateWinner } from '../sagas/gameSaga';
 import Board from './Board';
 import Menu from './Menu';
 import EndGame from './EndGame';
 import RoleOptions from './RoleOptions';
 
 class Game extends React.Component {
-    toHistory(step) {
+  componentDidMount() {
+    this.props.isRoleChosen(true);
+  }
+
+  toHistory(step) {
     this.props.jumpTo({
       stepNumber: step,
       xIsNext: (step % 2) === 0
     });
   }
 
-    renderRoleOptions(){
-
-        if(this.props.isRoleOptionsVisible) {
-            return(
-                <RoleOptions text={"Choose role"}/>
-            )
-        }
-        return null;
+  renderRoleOptions() {
+    if (this.props.isRoleOptionsVisible) {
+      return (
+        <RoleOptions text="Choose role" />
+      );
     }
+    return null;
+  }
 
-    renderEndGame(winner){
-
-        if(this.props.isEndGame) {
-            return(
-                <EndGame winner={winner}/>
-            )
-        }
-        return null;
+  renderEndGame(winner) {
+    if (this.props.isEndGame) {
+      return (
+        <EndGame winner={winner} />
+      );
     }
-
-    componentDidMount(){
-     this.props.isRoleChosen(true);
-    }
+    return null;
+  }
 
   render() {
     const { history, stepNumber, xIsNext } = this.props;
@@ -50,10 +48,11 @@ class Game extends React.Component {
       const desc = move
         ? `Go to move #${move}`
         : 'Go to game start';
+      const keyMove = `move${move}`;
 
       return (
-        <li key={move}>
-          <button onClick={() => this.toHistory(move)}>{desc}</button>
+        <li key={keyMove}>
+          <button type="submit" onClick={() => this.toHistory(move)}>{desc}</button>
         </li>
       );
     });
@@ -62,20 +61,17 @@ class Game extends React.Component {
 
     if (winner) {
       status = `Winner: ${winner}`;
-
-
     } else {
       status = `Next player: ${xIsNext ? 'X' : 'O'}`;
-
     }
 
     return (
       <div className="game">
-          {this.renderEndGame(winner)}
-          <div className="menu-container">
+        {this.renderEndGame(winner)}
+        <div className="menu-container">
           <Menu />
           {this.renderRoleOptions()}
-          </ div>
+        </div>
         <div className="game-board">
           <Board squares={current.squares}
             onClick={i => this.props.squareClick(i)} />
@@ -105,18 +101,19 @@ function mapDispatchToProps(dispatch) {
     squareClick,
     jumpTo,
     switchPlayer,
-      isRoleChosen
+    isRoleChosen
   }, dispatch);
 }
 
 Game.propTypes = {
-    jumpTo: PropTypes.func,
-    squareClick: PropTypes.func,
-    isRoleOptionsVisible: PropTypes.bool,
-    history: PropTypes.array,
-    stepNumber:  PropTypes.number,
-    xIsNext: PropTypes.bool,
-    isRoleChosen: PropTypes.func
+  jumpTo: PropTypes.func,
+  squareClick: PropTypes.func,
+  isRoleOptionsVisible: PropTypes.bool,
+  history: PropTypes.instanceOf(Array),
+  stepNumber: PropTypes.number,
+  xIsNext: PropTypes.bool,
+  isRoleChosen: PropTypes.func,
+  isEndGame: PropTypes.bool
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

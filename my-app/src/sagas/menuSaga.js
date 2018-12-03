@@ -3,15 +3,15 @@ import { put, takeEvery } from 'redux-saga/effects';
 import {
   CLEAR_HISTORY,
   SET_SWITCH_PLAYER,
-  SET_VISIBLE_ROLE_OPTIONS,
+  SHOW_ROLE_OPTIONS,
   SEND_ROLE_TO_SERVER,
   PLAYER_ROLE,
   SWITCH_PLAYER
-} from '../constants/Game';
+} from '../actions/index';
 
 export function* menuOperation(action) {
   yield put({
-    type: SET_VISIBLE_ROLE_OPTIONS,
+    type: SHOW_ROLE_OPTIONS,
     payload: true
   });
 
