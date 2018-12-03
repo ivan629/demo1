@@ -46,23 +46,13 @@
   
   .game {
     margin: 0 auto;
-    width: 50%;
+    width: 100%;
     /*border: 1px solid black;*/
     -position: relative;
     justify-content: center;
     display: flex;
     flex-direction: row;
   }
-@media screen and (max-width: 600px) {
-  .square {
-    height: 50px;
-    width: 50px;
-    font-size: 54px;
-  }
-  .game {
-    flex-direction: column;
-  }
-}
   
   .game-info {
     margin-left: 20px;
@@ -180,12 +170,43 @@ background: rgba(66, 105, 174, 1);
     color: rgba(76, 143, 251, 1);
 }
 
-/*auth*/
-
 .auth-container{
     width: 300px;
     height: 500px;
-    background: gba(85, 85, 85, 0.4);
+    background: rgba(85, 85, 85, 0.4);
 }
+
+    @media screen and (max-width: 1000px) {
+        .square {
+            height: 50px;
+            width: 50px;
+            font-size: 44px;
+        }
+        .game {
+            flex-direction: column;
+            align-items: center;
+        }
+         .options-wrapper {
+            font-size: 11px;
+        }
+        .menu-button{
+            font-size: 11px;
+        }
+        .role {
+            width: auto;
+            height: 30px;
+            font-size: 22px;
+            margin: 0 5px;
+            padding: 0 15px;
+        }
+        .option-title{
+            font-size: 14px;
+        }
+        .toggled {
+            background-color:  rgba(76, 143, 251, 1);
+            color: #ffffff;
+        }
+
+    }
 
 

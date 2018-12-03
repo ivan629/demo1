@@ -38,12 +38,11 @@ export function* checkGamePicture() {
 
   const lastHistory = history.slice(-1)[0];
   if (check(lastHistory.squares) || (winner)) {
-    yield call(delay, 500);
+    yield call(delay, 1000);
     yield put({
       type: SET_END_GAME,
       payload: true
     });
-    yield call(delay, 1000);
   }
   function check(x) {
     return x.every(i => typeof i === 'string');

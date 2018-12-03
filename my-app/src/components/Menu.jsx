@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -30,15 +29,9 @@ Play with computer
 
 function mapStateToProps({ game }) {
   return {
+
     isHumanPlayer: game.isHumanPlayer
   };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    switchPlayer,
-    isRoleChosen
-  }, dispatch);
 }
 
 RoleOptions.propTypes = {
@@ -46,4 +39,7 @@ RoleOptions.propTypes = {
   isHumanPlayer: PropTypes.bool
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoleOptions);
+export default connect(mapStateToProps, {
+  switchPlayer,
+  isRoleChosen
+})(RoleOptions);

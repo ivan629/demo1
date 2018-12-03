@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
@@ -29,17 +28,13 @@ class EndGame extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    isEndGameVisible,
-    clearHistory
-  }, dispatch);
-}
-
 EndGame.propTypes = {
   isEndGameVisible: PropTypes.func,
   clearHistory: PropTypes.func,
   winner: PropTypes.string,
 
 };
-export default connect(null, mapDispatchToProps)(EndGame);
+export default connect(null, {
+  isEndGameVisible,
+  clearHistory
+})(EndGame);

@@ -1,4 +1,3 @@
-import { bindActionCreators } from 'redux';
 import React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import PropTypes from 'prop-types';
@@ -37,15 +36,11 @@ function mapStateToProps({ game }) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    isRoleChosen
-  }, dispatch);
-}
-
 RoleOptions.propTypes = {
   isButtonPressedValue: PropTypes.bool,
   isRoleChosen: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RoleOptions);
+export default connect(mapStateToProps, {
+  isRoleChosen
+})(RoleOptions);

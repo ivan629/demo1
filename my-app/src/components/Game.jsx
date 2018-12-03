@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -96,15 +95,6 @@ function mapStateToProps({ game }) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    squareClick,
-    jumpTo,
-    switchPlayer,
-    isRoleChosen
-  }, dispatch);
-}
-
 Game.propTypes = {
   jumpTo: PropTypes.func,
   squareClick: PropTypes.func,
@@ -116,4 +106,9 @@ Game.propTypes = {
   isEndGame: PropTypes.bool
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+export default connect(mapStateToProps, {
+  squareClick,
+  jumpTo,
+  switchPlayer,
+  isRoleChosen
+})(Game);
